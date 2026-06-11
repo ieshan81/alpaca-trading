@@ -1,5 +1,5 @@
 #!/bin/sh
-set -eu
+set -e
 
 # Railway volume mounts are root-owned; use /tmp for writable agent memory.
 export TRADINGAGENTS_MEMORY_LOG_PATH="${TRADINGAGENTS_MEMORY_LOG_PATH:-/tmp/tradingagents-memory/trading_memory.md}"
