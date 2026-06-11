@@ -39,7 +39,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     SERVER_NAME=0.0.0.0 \
     TRADINGAGENTS_CACHE_DIR=/app/tradingagents/dataflows/data_cache \
     TRADINGAGENTS_RESULTS_DIR=/app/eval_results \
-    TRADINGAGENTS_MEMORY_LOG_PATH=/app/.tradingagents/memory/trading_memory.md \
+    TRADINGAGENTS_MEMORY_LOG_PATH=/tmp/tradingagents-memory/trading_memory.md \
     MPLCONFIGDIR=/tmp/matplotlib
 
 WORKDIR /app
