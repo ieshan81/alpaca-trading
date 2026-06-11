@@ -46,18 +46,18 @@ DEFAULT_CONFIG = {
         "parallel_tool_calls": True,
     },
     # Debate and discussion settings
-    "max_debate_rounds": 4,
-    "max_risk_discuss_rounds": 3,
+    "max_debate_rounds": int(os.getenv("MAX_DEBATE_ROUNDS", "1" if os.getenv("AUTOTRADER_FAST_MODE") else "4")),
+    "max_risk_discuss_rounds": int(os.getenv("MAX_RISK_DISCUSS_ROUNDS", "1" if os.getenv("AUTOTRADER_FAST_MODE") else "3")),
     "max_recur_limit": 200,
     # Trading settings
     "allow_shorts": False,  # False = Investment mode (BUY/HOLD/SELL), True = Trading mode (LONG/NEUTRAL/SHORT)
     # Execution settings
     "parallel_analysts": True,  # True = Run analysts in parallel for faster execution, False = Sequential execution
     "parallel_risk_first_round": True,  # Run Risky/Safe/Neutral in parallel only for round 1, then revert to linear flow
-    "analyst_start_delay": 0.5,  # Delay in seconds between starting each analyst (to avoid API overload)
-    "risk_analyst_start_delay": 0.35,  # Delay between starting first-round risk analysts in parallel mode
-    "analyst_call_delay": 0.1,  # Delay in seconds before making analyst calls
-    "tool_result_delay": 0.2,  # Delay in seconds between tool results and next analyst call
+    "analyst_start_delay": float(os.getenv("ANALYST_START_DELAY", "0.5" if not os.getenv("AUTOTRADER_FAST_MODE") else "0")),
+    "risk_analyst_start_delay": float(os.getenv("RISK_ANALYST_START_DELAY", "0.35" if not os.getenv("AUTOTRADER_FAST_MODE") else "0")),
+    "analyst_call_delay": float(os.getenv("ANALYST_CALL_DELAY", "0.1" if not os.getenv("AUTOTRADER_FAST_MODE") else "0")),
+    "tool_result_delay": float(os.getenv("TOOL_RESULT_DELAY", "0.2" if not os.getenv("AUTOTRADER_FAST_MODE") else "0")),
     # Context management settings (avoid prompt overflows in downstream agents)
     "report_context_budget_tokens": 5500,  # Max retrieved evidence budget per downstream agent call
     "report_context_max_chunks": 16,  # Max retrieved chunks injected into any single downstream prompt
